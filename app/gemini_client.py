@@ -178,8 +178,7 @@ class GeminiClient:
             self.logger.info(f"Listing documents in FileSearchStore: {store_name}")
 
             documents = self.client.file_search_stores.documents.list(
-                parent=store_name,
-                page_size=page_size
+                parent=store_name
             )
 
             document_list = []

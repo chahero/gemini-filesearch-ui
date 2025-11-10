@@ -611,14 +611,14 @@ function renderStoresForSearch() {
     }
 
     const storeRadios = state.stores.map((store, index) => {
-        const fileCount = 0; // API에서 파일 개수 정보 미제공
+        const fileCount = store.active_documents_count || 0;
         const checked = index === 0 ? 'checked' : '';
 
         return `
             <label class="checkbox-item">
                 <input type="radio" name="store" value="${store.store_name}" class="store-radio" ${checked}>
                 <span class="checkbox-label">${store.display_name}</span>
-                <span class="checkbox-size">${fileCount}개 파일</span>
+                <span class="checkbox-size">${fileCount}개 문서</span>
             </label>
         `;
     }).join('');
