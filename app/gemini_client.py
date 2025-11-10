@@ -80,7 +80,11 @@ class GeminiClient:
                     "store_name": store.name,
                     "display_name": store.display_name,
                     "create_time": str(store.create_time) if hasattr(store, 'create_time') else None,
-                    "update_time": str(store.update_time) if hasattr(store, 'update_time') else None
+                    "update_time": str(store.update_time) if hasattr(store, 'update_time') else None,
+                    "active_documents_count": int(store.active_documents_count) if (hasattr(store, 'active_documents_count') and store.active_documents_count is not None) else 0,
+                    "pending_documents_count": int(store.pending_documents_count) if (hasattr(store, 'pending_documents_count') and store.pending_documents_count is not None) else 0,
+                    "failed_documents_count": int(store.failed_documents_count) if (hasattr(store, 'failed_documents_count') and store.failed_documents_count is not None) else 0,
+                    "size_bytes": int(store.size_bytes) if (hasattr(store, 'size_bytes') and store.size_bytes is not None) else 0
                 }
                 store_list.append(store_info)
 
@@ -119,7 +123,11 @@ class GeminiClient:
                 "store_name": store.name,
                 "display_name": store.display_name,
                 "create_time": str(store.create_time) if hasattr(store, 'create_time') else None,
-                "update_time": str(store.update_time) if hasattr(store, 'update_time') else None
+                "update_time": str(store.update_time) if hasattr(store, 'update_time') else None,
+                "active_documents_count": int(store.active_documents_count) if (hasattr(store, 'active_documents_count') and store.active_documents_count is not None) else 0,
+                "pending_documents_count": int(store.pending_documents_count) if (hasattr(store, 'pending_documents_count') and store.pending_documents_count is not None) else 0,
+                "failed_documents_count": int(store.failed_documents_count) if (hasattr(store, 'failed_documents_count') and store.failed_documents_count is not None) else 0,
+                "size_bytes": int(store.size_bytes) if (hasattr(store, 'size_bytes') and store.size_bytes is not None) else 0
             }
         except Exception as e:
             self.logger.error(f"Error getting FileSearchStore {store_name}: {str(e)}", exc_info=True)

@@ -462,7 +462,11 @@ function renderStores() {
     }
 
     const storeCards = state.stores.map(store => {
-        const fileCount = store.file_count || 0;
+        const activeCount = store.active_documents_count || 0;
+        const pendingCount = store.pending_documents_count || 0;
+        const failedCount = store.failed_documents_count || 0;
+        const totalSize = store.size_bytes || 0;
+        const sizeInMB = (totalSize / (1024 * 1024)).toFixed(2);
         const createdDate = new Date(store.create_time).toLocaleDateString('ko-KR');
 
         return `
@@ -473,8 +477,22 @@ function renderStores() {
                 </div>
                 <div class="store-info">
                     <div class="store-stat">
-                        <span class="store-label">파일 수:</span>
-                        <span class="store-value file-count-${store.store_name.replace(/\//g, '-')}">${fileCount}개</span>
+                        <span class="store-label">활성 문서:</span>
+                        <span class="store-value file-count-${store.store_name.replace(/\//g, '-')}">${activeCount}개</span>
+                    </div>
+                    <div class="store-stat">
+                        <span class="store-label">처리 중:</span>
+                        <span class="store-value">${pendingCount}개</span>
+                    </div>
+                    ${failedCount > 0 ? `
+                    <div class="store-stat">
+                        <span class="store-label">실패:</span>
+                        <span class="store-value error">${failedCount}개</span>
+                    </div>
+                    ` : ''}
+                    <div class="store-stat">
+                        <span class="store-label">용량:</span>
+                        <span class="store-value">${sizeInMB} MB</span>
                     </div>
                     <div class="store-stat">
                         <span class="store-label">생성일:</span>
@@ -482,7 +500,7 @@ function renderStores() {
                     </div>
                     <div class="store-stat">
                         <span class="store-label">Store ID:</span>
-                        <span class="store-value store-id">${store.store_name}</span>
+                        <span class="store-value store-id" style="font-size: 12px;">${store.store_name}</span>
                     </div>
                 </div>
             </div>
@@ -509,9 +527,12 @@ function updateStats() {
     const totalSizeElem = document.getElementById('totalSize');
 
     if (totalFilesElem && totalSizeElem) {
-        totalFilesElem.textContent = state.files.length;
+        // FileStore의 활성 문서 수 합계
+        const totalActiveDocuments = state.stores.reduce((sum, s) => sum + (s.active_documents_count || 0), 0);
+        totalFilesElem.textContent = totalActiveDocuments;
 
-        const totalBytes = state.files.reduce((sum, f) => sum + (f.bytes || 0), 0);
+        // FileStore의 총 용량
+        const totalBytes = state.stores.reduce((sum, s) => sum + (s.size_bytes || 0), 0);
         const totalSize = (totalBytes / (1024 * 1024)).toFixed(2);
         totalSizeElem.textContent = totalSize + ' MB';
     }
