@@ -420,14 +420,14 @@ function renderStores() {
     }
 
     const storeCards = state.stores.map(store => {
-        const fileCount = store.file_counts?.total || 0;
-        const createdDate = new Date(store.created_at * 1000).toLocaleDateString('ko-KR');
+        const fileCount = 0; // API에서 파일 개수 정보 미제공
+        const createdDate = new Date(store.create_time).toLocaleDateString('ko-KR');
 
         return `
             <div class="store-card">
                 <div class="store-header">
-                    <h3>${store.name}</h3>
-                    <button class="btn btn-danger btn-sm" onclick="deleteStore('${store.store_id}', '${store.name}')">삭제</button>
+                    <h3>${store.display_name}</h3>
+                    <button class="btn btn-danger btn-sm" onclick="deleteStore('${store.store_name}', '${store.display_name}')">삭제</button>
                 </div>
                 <div class="store-info">
                     <div class="store-stat">
@@ -440,7 +440,7 @@ function renderStores() {
                     </div>
                     <div class="store-stat">
                         <span class="store-label">Store ID:</span>
-                        <span class="store-value store-id">${store.store_id}</span>
+                        <span class="store-value store-id">${store.store_name}</span>
                     </div>
                 </div>
             </div>
@@ -548,13 +548,13 @@ function renderStoresForSearch() {
     }
 
     const storeRadios = state.stores.map((store, index) => {
-        const fileCount = store.file_counts?.total || 0;
+        const fileCount = 0; // API에서 파일 개수 정보 미제공
         const checked = index === 0 ? 'checked' : '';
 
         return `
             <label class="checkbox-item">
-                <input type="radio" name="store" value="${store.store_id}" class="store-radio" ${checked}>
-                <span class="checkbox-label">${store.name}</span>
+                <input type="radio" name="store" value="${store.store_name}" class="store-radio" ${checked}>
+                <span class="checkbox-label">${store.display_name}</span>
                 <span class="checkbox-size">${fileCount}개 파일</span>
             </label>
         `;
@@ -569,7 +569,7 @@ function renderStoresForSearch() {
 
     // 첫 번째 스토어를 기본 선택
     if (state.stores.length > 0) {
-        state.selectedStoreId = state.stores[0].store_id;
+        state.selectedStoreId = state.stores[0].store_name;
     }
 
     // 라디오 버튼 변경 이벤트
