@@ -72,6 +72,20 @@
 
    应用将在 `http://localhost:5001` 可访问
 
+## 截图
+
+### 文件上传
+![文件上传标签页](docs/images/file-upload.png)
+
+### 我的文件
+![我的文件标签页](docs/images/my-files.png)
+
+### FileStore 管理
+![FileStore 管理](docs/images/filestore-management.png)
+
+### Chat 搜索
+![Chat 搜索](docs/images/chat-search.png)
+
 ## 使用方法
 
 ### 上传文件

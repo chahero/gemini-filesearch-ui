@@ -72,6 +72,20 @@ A modern web application for semantic search and document management using Googl
 
    The application will be available at `http://localhost:5001`
 
+## Screenshots
+
+### File Upload
+![File Upload Tab](docs/images/file-upload.png)
+
+### My Files
+![My Files Tab](docs/images/my-files.png)
+
+### FileStore Management
+![FileStore Management](docs/images/filestore-management.png)
+
+### Chat Search
+![Chat Search](docs/images/chat-search.png)
+
 ## Usage
 
 ### Upload Files

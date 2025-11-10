@@ -72,6 +72,20 @@ Google의 Gemini API File Search 기능을 사용한 의미론적 검색 및 문
 
    `http://localhost:5001` 에서 접속 가능합니다.
 
+## 스크린샷
+
+### 파일 업로드
+![파일 업로드 탭](docs/images/file-upload.png)
+
+### 내 파일
+![내 파일 탭](docs/images/my-files.png)
+
+### FileStore 관리
+![FileStore 관리](docs/images/filestore-management.png)
+
+### Chat 검색
+![Chat 검색](docs/images/chat-search.png)
+
 ## 사용 방법
 
 ### 파일 업로드

@@ -72,6 +72,20 @@ GoogleのGemini APIのFile Search機能を使用した、意味論的検索と�
 
    `http://localhost:5001` でアクセスできます。
 
+## スクリーンショット
+
+### ファイルアップロード
+![ファイルアップロード タブ](docs/images/file-upload.png)
+
+### マイファイル
+![マイファイル タブ](docs/images/my-files.png)
+
+### FileStore 管理
+![FileStore 管理](docs/images/filestore-management.png)
+
+### Chat 検索
+![Chat 検索](docs/images/chat-search.png)
+
 ## 使用方法
 
 ### ファイルアップロード
